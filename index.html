@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой 3D Редактор</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Three.js основная библиотека -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Three.js модуль для OrbitControls (вращение камеры) -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+    <!-- Three.js модуль для STLExporter -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/exporters/STLExporter.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Панель управления слева -->
+        <div class="sidebar">
+            <h2>Инструменты</h2>
+            <div class="tool-buttons">
+                <button id="addCube" class="btn">➕ Добавить куб</button>
+                <button id="addSphere" class="btn">➕ Добавить сферу</button>
+                <button id="addCylinder" class="btn">➕ Добавить цилиндр</button>
+            </div>
+            
+            <div class="mode-selector">
+                <h3>Режим:</h3>
+                <label><input type="radio" name="mode" value="select" checked> Выбор</label>
+                <label><input type="radio" name="mode" value="translate"> Перемещение</label>
+                <label><input type="radio" name="mode" value="rotate"> Вращение</label>
+                <label><input type="radio" name="mode" value="scale"> Масштаб</label>
+            </div>
+            
+            <div class="export-section">
+                <h3>Экспорт</h3>
+                <button id="exportSTL" class="btn export-btn">📥 Экспорт в STL</button>
+                <p class="hint">Все объекты на сцене будут сохранены в один файл.</p>
+            </div>
+            
+            <div class="info">
+                <h3>Управление</h3>
+                <ul>
+                    <li><strong>ЛКМ + движение</strong> — вращать камеру</li>
+                    <li><strong>СКМ + движение</strong> — перемещать камеру</li>
+                    <li><strong>Колесико</strong> — приблизить/отдалить</li>
+                    <li><strong>Клик по объекту</strong> — выбрать</li>
+                    <li><strong>Delete</strong> — удалить выбранный объект</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Основная область для 3D сцены -->
+        <div class="viewport-container">
+            <div id="viewport"></div>
+            <div class="status-bar">
+                <span id="selectedInfo">Выберите объект</span>
+                <span id="modeInfo">Режим: Выбор</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
